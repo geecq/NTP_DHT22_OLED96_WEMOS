@@ -24,7 +24,8 @@ DHT_Unified dht(DHTPIN, DHTTYPE);
 
 const char* ssid     = "Your-SSID";
 const char* password = "Your-PASSWORD";
-const char* Timezone = "PST8PDT,M3.2.0,M11.1.0"; // posix PST time zone code      
+const char* Timezone = "PST8PDT,M3.2.0,M11.1.0"; // https://github.com/nayarsystems/posix_tz_db/blob/master/zones.csv
+      
 String Time_format;  
 float temp, rh;
 String Date_str, Time_str;
@@ -98,7 +99,7 @@ void UpdateLocalTime(String Format){
   time_t now;
   time(&now);
   char hour_output[30], day_output[30];
-  strftime(day_output, 30, "%a %d", localtime(&now)); 
+  strftime(day_output, 30, "%a %d %b", localtime(&now)); 
   strftime(hour_output, 30, "%T", localtime(&now));   
   Date_str = day_output;
   Time_str = hour_output;
