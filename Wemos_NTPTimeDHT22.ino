@@ -69,12 +69,12 @@ void loop() {
   ArduinoOTA.handle();
   static unsigned long lastMillis = millis();
   static int DHT_delay = 0;
-  if (millis() - lastMillis >= 1000) { // time update every 1 sec
+  if (millis() - lastMillis >= 1000) { // time update every sec
     UpdateLocalTime(Time_format);
     lastMillis = millis();
     DHT_delay++;
   }
-  if (DHT_delay >= 9) { // temp & humidity reading every 10 secs
+  if (DHT_delay >= 10) { // temp & humidity reading every 10 secs
   sensors_event_t event;
   dht.temperature().getEvent(&event);
   temp = (event.temperature * 9/5) + 32;
